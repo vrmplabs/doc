@@ -1,0 +1,73 @@
+#####################################################################
+# You can create a  settings.local file and override these settings #
+# from there, allowing you to `git pull` without conflicts!         #
+#####################################################################
+
+# MySQL Server Settings
+MYSQL_HOST="172.16.10.77"
+MYSQL_ROOT_PASS="root"
+MYSQL_NOVA_PASS="centrinN"
+MYSQL_GLANCE_PASS="centrinG"
+MYSQL_KEYSTONE_PASS="centrinK"
+MYSQL_HORIZON_PASS="centrinH"
+
+# keystone
+KEYSTONE_IP="172.16.10.77"
+SERVICE_TOKEN="CentRin"
+SERVICE_ENDPOINT="http://$KEYSTONE_IP:35357/v2.0/"
+ 
+SERVICE_TENANT_NAME="service"
+
+# keystone user password
+ADMIN_PASSWORD="admin"
+SERVICE_PASSWORD="admin"
+
+# Controller Node
+CONTROLLER_IP="172.16.10.77"       # Do actually change this! This should be an IP address accessible by your end users. Not 127.0.0.1.
+
+# Computer Node
+COMPUTE_IP="172.16.10.77"       # Do actually change this! This should be an IP address accessible by your end users. Not 127.0.0.1.
+
+# glance
+GLANCE_IP="172.16.10.77"       # Do actually change this! This should be an IP address accessible by your end users. Not 127.0.0.1.
+#GLANCE_TENENT=$SERVICE_TENENT
+#GLANCE_USER="glance"
+#GLANCE_PASSWOED=$SERVICE_PASSWORD
+#GLANCE_AUTH_URL="http://$KEYSTONE_IP:5000/v2.0/"
+
+# rabbitmq
+RABBITMQ_IP="172.16.10.77"
+
+# dashboard
+DASHBOARD_IP="172.16.10.77"
+
+# Networking and IPs
+#PUBLIC_INTERFACE="eth0"   # Interface for Floating IP traffic
+#VLAN_INTERFACE="eth1"     # Interface for Fixed IP VLAN traffic
+FLOATING_RANGE="172.16.77.0/24"
+FIXED_RANGE_NET="192.168.10.0"  
+FIXED_RANGE_BITS="24"
+FIXED_RANGE_MASK="255.255.255.0"
+FIXED_RANGE_NETWORK_SIZE="256"
+FIXED_RANGE_NETWORK_COUNT="1"
+FIXED_RANGE="${FIXED_RANGE_NET}/${FIXED_RANGE_BITS}"
+COUNT=1
+
+# Misc
+#REGION="nova"             # Region name - "nova" is the default, and probably the most reliable withoit extra setup!
+
+# Load overrides from settings.local if it exists
+if [ -f settings.local ]
+then
+  . settings.local
+fi
+
+# Dont change anything below here!
+#export NOVA_PROJECT_ID="admin" # Tenant
+#export NOVA_USERNAME="admin" # Username
+#export NOVA_API_KEY=$ADMIN_PASSWORD
+#export NOVA_URL="http://$HOST_IP:5000/v2.0/"
+#export NOVA_URL="http://$KEYSTONE_IP:5000/v2.0/"
+#export NOVA_VERSION=1.1
+#export NOVA_REGION_NAME=$REGION
+
